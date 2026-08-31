@@ -1,0 +1,5 @@
+discord:
+  token: "YOUR_BOT_TOKEN"
+  guild_id: 0  # Replace with your Discord server ID
+  channel_id: 0  # Replace with your channel ID
+  permanent_role_id: 0  # Optional: Replace with role ID for permanent access; set to 0 to disable
