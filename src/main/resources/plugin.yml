@@ -2,18 +2,22 @@ name: DiscordVotePlugin
 main: com.example.DiscordVotePlugin
 version: 1.1-SNAPSHOT
 api-version: 1.21
-author: wilder0p
+author: YourName
 description: Links Minecraft voting to Discord chat permissions via credits
 
 commands:
   discordlink:
     description: Link your Minecraft account to Discord
     usage: /discordlink <discord_username>
+    # no permission node → anyone can use it
 
   verify:
     description: Verify your Discord link with the code sent in DM
     usage: /verify <code>
+    # no permission node → anyone can use it
 
   grantdiscordchat:
     description: Grant chat credit to a player (operators only)
     usage: /grantdiscordchat <player>
+    # IMPORTANT: Do NOT add a permission node here
+    # We will check sender.isOp() in code instead

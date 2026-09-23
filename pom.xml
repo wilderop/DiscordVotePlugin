@@ -19,10 +19,12 @@
     </properties>
 
     <repositories>
+        <!-- PaperMC (for Paper/Spigot API) -->
         <repository>
             <id>papermc</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
+        <!-- JDA (Java Discord API) -->
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
@@ -30,12 +32,15 @@
     </repositories>
 
     <dependencies>
+        <!-- Paper/Spigot API -->
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
             <version>1.21.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- JDA (Java Discord API) -->
         <dependency>
             <groupId>com.github.DV8FromTheWorld</groupId>
             <artifactId>JDA</artifactId>
@@ -47,6 +52,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- Optional: for better logging / utilities (already in Paper, but good to have) -->
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
@@ -66,6 +73,7 @@
                     <target>21</target>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -79,6 +87,7 @@
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <relocations>
+                                <!-- Relocate JDA to avoid conflicts -->
                                 <relocation>
                                     <pattern>net.dv8tion.jda</pattern>
                                     <shadedPattern>com.example.jda</shadedPattern>
@@ -88,6 +97,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -101,6 +111,7 @@
                 </configuration>
             </plugin>
         </plugins>
+
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

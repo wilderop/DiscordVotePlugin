@@ -76,6 +76,7 @@ public class DiscordVotePlugin extends JavaPlugin {
             if (guild != null) {
                 TextChannel channel = guild.getTextChannelById(channelId);
                 if (channel != null) {
+                    // Ensure @everyone cannot send messages
                     var everyoneOverride = channel.getPermissionOverride(guild.getPublicRole());
                     if (everyoneOverride == null || everyoneOverride.getAllowed().contains(Permission.MESSAGE_SEND)) {
                         channel.upsertPermissionOverride(guild.getPublicRole())
@@ -84,6 +85,7 @@ public class DiscordVotePlugin extends JavaPlugin {
                                         getLogger().warning("Failed to deny @everyone send: " + e.getMessage()));
                     }
 
+                    // Periodic enforcement (every 5 min)
                     Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> {
                         TextChannel ch = guild.getTextChannelById(channelId);
                         if (ch != null) {
